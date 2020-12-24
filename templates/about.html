@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">About this project.</h1>
+        <p class="lead">I want to show my appreciation and gratitude by thanking to my mentors,
+            Jose Salvatierra and Phil Best, who guided and helped me throughout this project.
+            This wouldn't have happened without their help. Thank you guys <3 <3 <3. <br>
+        Jose Salvatierra: <a href="https://www.udemy.com/course/complete-python-postgresql-database-course/?altsc=781502#instructor-2">Udemy page</a> <br>
+        Phil Best: <a href="https://twitter.com/PhilBest2202">Twitter</a> <a href="https://github.com/Pjb518">GitHub</a> <br>
+        Teclado: <a href="https://www.youtube.com/channel/UCINg1S61mpN7dZW8vR2ikCw">Youtube</a>
+            <a href="https://discord.gg/KW2Eye8">Discord</a>
+        </p>
+        <hr class="my-4">
+        <p>Just sign up, and get started.</p>
+
+        {% if session['email'] %}
+        <p><a class="btn btn-primary btn-lg" href="{{ url_for('assets.index') }}" role="button">Get started</a></p>
+        {% endif %}
+
+        {% if session['email'] == None %}
+        <p><a class="btn btn-primary btn-lg" href="{{ url_for('users.register_user') }}" role="button">Get started</a></p>
+        {% endif %}
+    </div>
+{% endblock %}

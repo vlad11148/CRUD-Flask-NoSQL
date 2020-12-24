@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<header>
+    <h1>Assets</h1>
+</header>
+    <small class="form-text text-muted">Total of money spent on assets: {{ total }} Dkk</small>
+    <small class="form-text text-muted">Number of current assets: {{ number_of_assets }}</small>
+    <small class="form-text text-muted">Number of offline devices: {{ offline_assets }}</small>
+<section>
+
+    <div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                {% if key_headings %}
+                    {% for heading in key_headings %}
+                        <th scope="col">{{ heading }}</th>
+                    {% endfor %}
+                {% endif %}
+
+
+                {% if not key_headings %}
+                    <th scope="col">Type</th>
+                    <th scope="col">Model</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">IP</th>
+                    <th scope="col">Subnet</th>
+                    <th scope="col">Floor</th>
+                    <th scope="col">Room</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Status</th>
+                {% endif %}
+            </tr>
+        </thead>
+            <tbody>
+            {% for asset in assets %}
+            <tr>
+                    <td>{{asset.type}}</td>
+                    <td>{{asset.model}}</td>
+                    <td>{{asset.name}}</td>
+                    <td>{{asset.ip}}</td>
+                    <td>{{asset.subnet}}</td>
+                    <td>{{asset.floor}}</td>
+                    <td>{{asset.room}}</td>
+                    <td>{{asset.price}}</td>
+
+                    {% if asset.status == 'Online' %}
+                        <td><p class="text-success">{{asset.status}}</p></td>
+                    {% endif %}
+                    {% if asset.status == 'Offline' %}
+                        <td><p class="text-danger font-weight-bold">{{asset.status}}</p></td>
+                    {% endif %}
+                    <td>
+                    {% if session['email'] == config.ADMIN %}
+                    <a class="btn btn-secondary btn-sm" href="{{ url_for('assets.edit_asset', asset_id=asset._id) }}">
+                        Edit
+                    </a>
+                    <a class="btn btn-danger btn-sm" href="{{ url_for('assets.delete_asset', asset_id=asset._id) }}" role="button">
+                        Delete
+                    </a>
+                    {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+    </div>
+    <a class="btn btn-primary mt-3" href="{{ url_for('assets.create_asset') }}">
+        Create new
+    </a>
+</section>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<header>
+    <h1>Edit Asset</h1>
+</header>
+<section class="create-asset-form">
+    <form method="post">
+        <div class="form-group">
+            <label for="type">Type</label>
+            <input type="text" class="form-control form-control-sm" id="type" name="type" placeholder="Router" value="{{ asset.type }}">
+        </div>
+        <div class="form-group">
+            <label for="model">Device model</label>
+            <input type="text" class="form-control form-control-sm" id="model" name="model" placeholder="syslink e1000"
+                value="{{ asset.model }}" aria-describedby="modelHelp">
+        </div>
+        <div class="form-group">
+            <label for="name">Device Name</label>
+            <input type="text" class="form-control form-control-sm" id="name" name="name" placeholder="Dania AP Room 154"
+                value="{{ asset.name }}" aria-describedby="nameHelp">
+        </div>
+        <div class="form-group">
+            <label for="ip">IP Address</label>
+            <input type="text" class="form-control form-control-sm" id="ip" name="ip" placeholder='192.168.0.1'
+                value="{{ asset.ip }}" aria-describedby="ipHelp">
+        </div>
+        <div class="form-group">
+            <label for="subnet">Subnet Address</label>
+            <input type="text" class="form-control form-control-sm" id="subnet" name="subnet" placeholder='192.168.0.0'
+                value="{{ asset.subnet }}" aria-describedby="subnetHelp">
+        </div>
+        <div class="form-group">
+            <label for="floor">Floor</label>
+            <input type="text" class="form-control form-control-sm" id="floor" name="floor" placeholder='1'
+                value="{{ asset.floor }}" aria-describedby="floorHelp">
+        </div>
+        <div class="form-group">
+            <label for="room">Room</label>
+            <input type="text" class="form-control form-control-sm" id="room" name="room" placeholder='F381'
+                value="{{ asset.room }}" aria-describedby="roomHelp">
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" class="form-control form-control-sm" id="price" name="price" placeholder='195.99'
+                value="{{ asset.price }}" aria-describedby="priceHelp">
+            <small id="priceHelp" class="form-text text-muted">
+                Whole numbers or decimal numbers
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="status">Status</label>
+            <input type="text" class="form-control form-control-sm" id="status" name="status" placeholder='Online'
+                value="{{ asset.status }}" aria-describedby="statusHelp">
+            <small id="statusHelp" class="form-text text-muted">
+                Status is `Online` or `Offline` only!
+            </small>
+        </div>
+        <button type="submit" class="btn btn-primary mb-5">Update</button>
+        <a href="asset_index.html"><button class="btn btn-danger mb-5">Cancel</button></a>
+    </form>
+</section>
+{% endblock %}

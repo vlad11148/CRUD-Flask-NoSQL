@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">Dania Asset Database.</h1>
+        <p class="lead">Warning: this is a restricted area. If you don't know what this is, leave!</p>
+        <hr class="my-4">
+        <p>Just sign up, and get started.</p>
+
+        {% if session['email'] %}
+        <p><a class="btn btn-primary btn-lg" href="{{ url_for('assets.index') }}" role="button">Get started</a></p>
+        {% endif %}
+
+        {% if not session['email'] %}
+        <p><a class="btn btn-primary btn-lg" href="{{ url_for('users.register_user') }}" role="button">Get started</a></p>
+        {% endif %}
+
+    </div>
+{% endblock %}
